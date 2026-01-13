@@ -1,0 +1,1166 @@
+
+
+
+
+/* ========================================================= */
+/* 1. VARIABLES GLOBALES                                     */
+/* ========================================================= */
+
+
+
+/* ========================================================= */
+/* 2. RESET & BASE                                           */
+/* ========================================================= */
+
+/* RESET */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #0e0e0e;
+  color: #eee;
+  position: relative;
+}
+/* nuance gauche */
+body::before,
+body::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  width: 120px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* gauche */
+body::before {
+  left: 0;
+  background: linear-gradient(
+    to right,
+    rgba(200, 155, 60, 0.12),
+    rgba(0, 0, 0, 0)
+  );
+}
+
+/* droite */
+body::after {
+  right: 0;
+  background: linear-gradient(
+    to left,
+    rgba(123, 92, 255, 0.12),
+    rgba(0, 0, 0, 0)
+  );
+}
+
+
+
+/* ========================================================= */
+/* 3. LAYOUT GLOBAL                                          */
+/* ========================================================= */
+
+.page-content {
+  position: relative;
+  z-index: 1;
+  max-width: 1000px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+/* ========================================================= */
+/* 4. HEADER / NAVIGATION                                    */
+/* ========================================================= */
+/* HEADER */
+.site-header {
+  top: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 40px 50px;
+  background: #000000;
+  position: relative;
+}
+
+
+
+/* fondu sous le header */
+.site-header::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -50px;
+  height: 50px;
+  background: linear-gradient(
+    to bottom,
+    rgba(97, 97, 97, 0.6),
+    rgba(0, 0, 0, 0)
+  );
+  pointer-events: none;
+}
+.site-header .header-right {
+  display: flex;
+  align-items: center;
+}
+
+
+
+
+.site-title {
+  color: inherit;
+  text-decoration: none;
+}
+
+.site-title:hover {
+  text-decoration: none;
+  opacity: 0.85;
+}
+
+
+.logo {
+  height: 80px;
+}
+
+.header-center h1 {
+  margin: 0;
+  font-size: 3rem;
+}
+
+.menu-toggle {
+  display: none !important;
+}
+
+.menu-toggle {
+  background: none;
+  border: none;
+  font-size: 1.5em;
+  color: white;
+  cursor: pointer;
+  display: none;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: block;
+  }
+
+  .main-nav {
+    display: none;
+    position: absolute;
+    right: 10px;
+    top: 60px;
+    background: #222;
+    padding: 10px;
+    border-radius: 6px;
+  }
+
+  .main-nav.open {
+    display: block;
+  }
+
+  .submenu {
+    position: static;
+  }
+}
+.header {
+  background: linear-gradient(135deg, #0f172a, #1e293b);
+  display: flex;
+  align-items: center;
+  padding: 20px;
+}
+
+
+.logo {
+  opacity: 0.85;
+  transition: opacity 0.3s ease;
+}
+
+.logo:hover {
+  opacity: 1;
+}
+
+
+
+/* ========================================================= */
+/* 5. MENU DÉROULANT (GUIDES)                                */
+/* ========================================================= */
+
+
+/* =============================== */
+/* TAILLE TEXTE MENU GUIDES */
+/* =============================== */
+
+.submenu a {
+  font-size: 1.3rem;   /* augmente lisibilité */
+  line-height: 1.7;
+    display: block;
+  padding: 10px 18px;
+}
+
+/* =============================== */
+/* TAILLE TEXTE BOUTON GUIDES */
+/* =============================== */
+
+.submenu-toggle {
+  font-size: 2rem;   /* augmente Guides */
+  font-weight: 600;
+}
+
+
+/* =============================== */
+/* SUPPRESSION DEFINITIVE DES PUCES */
+/* =============================== */
+
+header ul,
+header li,
+.submenu ul,
+.submenu li {
+  list-style: none !important;
+  margin: 0;
+  padding: 0;
+}
+
+/* =============================== */
+/* MENU GUIDES – VERSION STABLE */
+/* =============================== */
+
+.header-right {
+  position: relative;
+}
+
+/* Bouton Guides (design d’origine) */
+.submenu-toggle {
+  background: #1f1f1f;
+  color: #ffffff;
+  font-size: 2rem;
+  font-weight: 600;
+  padding: 8px 14px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Conteneur menu déroulant */
+.submenu {
+  display: none;
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  background: #1b1b1b;
+  border-radius: 8px;
+  padding: 10px 0;
+  min-width: 200px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.5);
+  z-index: 999;
+}
+
+/* Menu ouvert */
+.submenu.open {
+  display: block;
+}
+
+/* Liste propre */
+.submenu ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Items */
+.submenu li {
+  padding: 8px 16px;
+}
+
+/* Liens */
+.submenu a {
+  color: #ffffff;
+  text-decoration: none;
+  display: block;
+  font-size: 0.95rem;
+}
+
+/* Hover */
+.submenu a:hover {
+  background: #2a2a2a;
+  border-radius: 4px;
+}
+/* ========================================================= */
+/* 6. COMPOSANTS GÉNÉRIQUES (CARTES, BOUTONS)                */
+/* ========================================================= */
+
+/* BADGES */
+.badge {
+  padding: 4px 8px;
+  font-size: 0.75em;
+  border-radius: 4px;
+  font-weight: bold;
+}
+
+.badge.patch {
+  background: #c89b3c;
+  color: #000;
+}
+
+.badge.event {
+  background: #3ca6c8;
+  color: #000;
+}
+
+.badge.hotfix {
+  background: #c83c3c;
+}
+
+/* ===================== */
+/* BADGES EPIC – SET 70 */
+/* ===================== */
+
+/* on centre le contenu des cards */
+.card-link {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+/* badge epic */
+.badge.epic {
+  display: inline-block;
+  margin-top: 10px;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+}
+/* badge epic centré avec espacement propre */
+.card-link .badge.epic {
+  display: inline-block;
+  margin: 14px auto 0;
+  margin-top: auto;      
+  margin-bottom: 16px;}
+
+/* EPIC I – Violet */
+.badge.epic-1 {
+  background: linear-gradient(135deg, #7b5cff, #9b7dff);
+  color: #fff;
+}
+
+/* EPIC II – Rose */
+.badge.epic-2 {
+  background: linear-gradient(135deg, #c84c9a, #e07ab6);
+  color: #fff;
+}
+
+/* EPIC III – Doré */
+.badge.epic-3 {
+  background: linear-gradient(135deg, #c89b3c, #f0c75e);
+  color: #000;
+}
+
+/* ========================================================= */
+/* 7. PAGE INDEX (ACTUS, HOME)                               */
+/* ========================================================= */
+
+/* ACTU */
+.actu {
+ 
+  padding: 30px 20px;
+  max-width: 900px;   
+  margin: 0 auto;    
+  
+}
+.actu h2 {
+  text-align: center;
+  margin-bottom: 60px;
+  font-size: 4rem;
+}
+
+
+.actu-item {
+  background: #151515;
+  padding: 15px;
+  margin-bottom: 20px;
+  border-radius: 6px;
+  border-left: 4px solid #666;
+}
+
+
+
+.actu-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.actu-item a {
+  color: #f0c75e;
+  text-decoration: none;
+}
+
+.actu-meta {
+  font-size: 0.85em;
+  color: #aaa;
+}
+
+
+/* ========================================================= */
+/* 8. PAGE SET LVL 70 (LISTE + DÉTAIL)                       */
+/* ========================================================= */
+
+/* PAGES INTERNES */
+
+
+.page-content h2 {
+  text-align: center;
+  font-size: 2.2rem;
+  margin-bottom: 30px;
+}
+
+.content-block {
+  background: #151515;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 30px;
+}
+
+.content-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+}
+
+.card {
+  background: #1b1b1b;
+  padding: 20px;
+  border-radius: 8px;
+  border-left: 4px solid #c89b3c;
+    /* TAILLE UNIFORME */
+  height: 140px;
+
+  /* alignement interne */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.card h3 {
+  margin-top: 0;
+  color: #f0c75e;
+  margin: 0 0 10px 0;
+  text-align: center;
+}
+.card p {
+  text-align: center;
+  color: #aaa;
+}
+
+
+.card-link {
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card-link:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+  border-left-color: #f0c75e;
+}
+
+
+/* ================================================= */
+/* PAGE SET DETAIL – PLUME NOIRE (CSS SCOPÉ UNIQUEMENT) */
+/* ================================================= */
+
+/* ---------- GRID DES ITEMS ---------- */
+.set-page .set-items-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 30px;
+  margin-bottom: 50px;
+}
+
+/* Carte globale de chaque item */
+.set-page .set-item-card {
+  background: #151515;
+  border-radius: 10px;
+  padding: 25px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.35);
+}
+
+/* Dernier item centré */
+.set-page .set-item-card:last-child {
+  grid-column: 1 / -1;
+  max-width: 650px;
+  margin: 0 auto;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .set-page .set-items-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .set-page .set-item-card:last-child {
+    max-width: 100%;
+  }
+}
+
+/* ---------- CONTENU INTERNE DES ITEMS ---------- */
+.set-page .item-detail {
+  margin-bottom: 0;
+}
+
+.set-page .item-title {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.set-page .item-en {
+  display: block;
+  font-size: 0.85rem;
+  color: #aaa;
+}
+
+/* Colonnes attributs / effets */
+.set-page .item-columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+@media (max-width: 600px) {
+  .set-page .item-columns {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ---------- BOITES ATTRIBUTS / EFFETS ---------- */
+.set-page .item-box {
+  background: #1b1b1b;
+  border-radius: 8px;
+  padding: 18px 18px 18px 26px;
+  position: relative;
+}
+
+/* Accent ATTRIBUTS (bleu, éloigné du texte) */
+.set-page .item-box::before {
+  content: "";
+  position: absolute;
+  left: 10px;
+  top: 12px;
+  bottom: 12px;
+  width: 4px;
+  background: #3ca6c8;
+  border-radius: 4px;
+}
+
+/* Effets */
+.set-page .item-box.highlight {
+  background: #1a1717;
+}
+
+.set-page .item-box.highlight::before {
+  background: #c83c3c;
+}
+
+/* Lisibilité texte */
+.set-page .item-box p,
+.set-page .item-box li {
+  line-height: 1.6;
+}
+
+/* ---------- BONUS DE SET ---------- */
+.set-page .set-bonus-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+  margin-top: 40px;
+}
+
+/* Carte bonus */
+.set-page .set-bonus-card {
+  background: #151515;
+  border-radius: 10px;
+  padding: 22px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.35);
+  position: relative;
+}
+
+/* Accent progression */
+.set-page .set-bonus-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  border-radius: 10px 10px 0 0;
+}
+
+/* 2 / 3 / 5 pièces */
+.set-page .set-bonus-card:nth-child(1)::before {
+  background: #3ca6c8;
+}
+
+.set-page .set-bonus-card:nth-child(2)::before {
+  background: #c89b3c;
+}
+
+.set-page .set-bonus-card:nth-child(3)::before {
+  background: #c83c3c;
+}
+
+/* Mobile bonus */
+@media (max-width: 900px) {
+  .set-page .set-bonus-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+
+/* ========================================================= */
+/* 9. PAGE RAID LVL 70                                       */
+/* ========================================================= */
+
+/* Grille des raids */
+.raids-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+  margin-top: 40px;
+}
+
+/* Carte de raid */
+.raid-card {
+  position: relative;
+  height: 360px;
+  border-radius: 16px;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+  cursor: pointer;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.raid-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.8);
+}
+
+/* Overlay */
+.raid-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 22px;
+  gap: 6px;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.9),
+    rgba(0, 0, 0, 0.55),
+    rgba(0, 0, 0, 0.2)
+  );
+}
+
+/* Titre */
+.raid-overlay h3 {
+  color: #f5c86b;
+  font-size: 1.35rem;
+  line-height: 1.2;
+  min-height: 3.2em; /* ≈ 2 lignes fixes */
+  margin: 0;
+  text-shadow: 0 2px 6px rgba(0,0,0,0.9);
+}
+
+/* Ligne neutralisation */
+.raid-neutralisation {
+  color: #f0f0f0;
+  font-size: 0.95rem;
+  min-height: 1.3em;
+  text-shadow: 0 2px 6px rgba(0,0,0,0.9);
+}
+
+/* Ligne difficultés */
+.raid-difficulties {
+  color: #ffffff;
+  font-size: 0.95rem;
+  min-height: 1.3em;
+  text-shadow: 0 2px 6px rgba(0,0,0,0.9);
+}
+
+
+/* ========================================================= */
+/* 10. PLAYER VIDÉO (OVERLAY YOUTUBE)                        */
+/* ========================================================= */
+.video-modal.open {
+  display: flex;
+}
+
+.video-content {
+  position: relative;
+  width: 90%;
+  max-width: 900px;
+  aspect-ratio: 16 / 9;
+}
+
+.video-content iframe {
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+}
+
+.video-close {
+  position: absolute;
+  top: -40px;
+  right: 0;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 28px;
+  cursor: pointer;
+}
+
+/* MODAL VIDEO */
+.video-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.85);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+
+/* ========================================================= */
+/* 11. UTILITAIRES / HELPERS                                 */
+/* ========================================================= */
+
+
+
+
+
+
+/* ========================================================= */
+/* PAGE INSIGNES – VERSION PROPRE ET STABLE                  */
+/* ========================================================= */
+
+.insigne-page h2 {
+  text-align: center;
+  font-size: 2.2rem;
+  margin-bottom: 50px;
+}
+
+.insigne-page .insigne-section {
+  margin-bottom: 70px;
+}
+
+.insigne-page .insigne-section h3 {
+  margin-bottom: 30px;
+  font-size: 1.5rem;
+  color: #f0c75e;
+  border-left: 4px solid #c89b3c;
+  padding-left: 14px;
+}
+
+/* ✅ GRILLE : 2 COLONNES RÉELLES */
+.insigne-page .insigne-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
+  align-items: stretch;
+}
+
+/* ✅ CARTE */
+.insigne-page .insigne-card {
+  background: #151515;
+  border-radius: 10px;
+  padding: 20px 24px 20px 34px;
+  position: relative;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.35);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  height: 100%;   /* même hauteur */
+}
+
+/* Bordure dorée */
+.insigne-page .insigne-card::before {
+  content: "";
+  position: absolute;
+  left: 14px;
+  top: 14px;
+  bottom: 14px;
+  width: 4px;
+  border-radius: 4px;
+  background: linear-gradient(180deg, #c89b3c, #f0c75e);
+}
+
+/* Texte */
+.insigne-page .insigne-card h4 {
+  margin: 0 0 10px;
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: #f0c75e;
+}
+
+.insigne-page .insigne-card p {
+  margin: 4px 0;
+  line-height: 1.45;
+  color: #ddd;
+}
+
+/* EPIC */
+.insigne-page .insigne-card.epic::before {
+  background: linear-gradient(180deg, #7b5cff, #c84c9a);
+}
+
+.insigne-page .insigne-card.epic h4 {
+  color: #c9b7ff;
+}
+
+.insigne-page .insigne-card.epic p {
+  color: #e2dcff;
+}
+
+/* MOBILE */
+@media (max-width: 800px) {
+  .insigne-page .insigne-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+
+
+/*GRAVURES---------------------------------------------------------------*/
+/* ================= PAGE ================= */
+
+.gravures-page {
+  max-width: 1100px;
+  margin: auto;
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.gravures-page h1 {
+  color: #f0c75e;
+  margin-bottom: 35px;
+}
+
+.gravures-page h2 {
+  color: #f0c75e;
+  margin: 40px 0 15px;
+}
+
+/* ================= TABLE ================= */
+
+.gravure-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #111;
+  border-radius: 10px;
+  overflow: visible;
+}
+
+.gravure-table th {
+  background: #1a1a1a;
+  color: #f0c75e;
+  text-align: left;
+  padding: 14px;
+  font-weight: 600;
+}
+
+.gravure-table td {
+  padding: 14px;
+  border-top: 1px solid rgba(255,255,255,0.05);
+}
+
+.gravure-category th {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+
+  text-align: left;
+  padding: 14px 16px;
+}
+
+
+/* ================= ITEM ================= */
+
+.gravure-item {
+  position: relative;
+  display: inline-block;
+  z-index: 10;
+}
+
+.gravure-name {
+  color: #f0c75e;
+  font-weight: 600;
+  cursor: help;
+}
+
+/* ================= TOOLTIP ================= */
+
+.gravure-tooltip {
+  position: absolute;
+  top: 120%;
+  left: 0;
+
+  width: 360px;
+  background: #0b0f14;
+  border: 1px solid #f0c75e;
+  border-radius: 10px;
+  padding: 14px;
+
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(6px);
+  transition: 0.2s ease;
+  z-index: 999;
+}
+
+.gravure-item:hover .gravure-tooltip {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.gravure-tooltip strong {
+  color: #f0c75e;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.gravure-level {
+  margin-bottom: 6px;
+  font-size: 0.9rem;
+}
+
+.gravure-level span {
+  color: #8fd3ff;
+  font-weight: 600;
+}
+
+.gravure-level em {
+  color: #c8a8ff;
+  font-style: normal;
+  font-size: 0.85rem;
+}
+
+/* ===== CENTRAGE & LARGEUR TABLE GRAVURES ===== */
+.gravure-table {
+  max-width: 720px;
+  margin: 0 auto 50px;
+}
+
+/* ===== HEADER CATÉGORIE ===== */
+.category-header th {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* ===== BOUTON DÉPLIER ===== */
+.toggle-btn {
+  background: none;
+  border: 1px solid #f0c75e;
+  color: #f0c75e;
+  padding: 4px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.85rem;
+}
+
+.toggle-btn:hover {
+  background: rgba(240,199,94,0.1);
+}
+
+
+/* ===== TOOLTIP AU-DESSUS ===== */
+.gravure-tooltip {
+  top: auto;
+  bottom: 120%;
+  left: 0;
+  text-align: left;
+  z-index: 9999;
+}
+
+.toggle-table {
+  width: 28px;
+  height: 28px;
+
+  background: #111;
+  border: 1px solid #444;
+  border-radius: 6px;
+
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transition: all 0.2s ease;
+}
+
+.toggle-table::before {
+  content: "+";
+  color: #f0c75e;
+  font-size: 1.2rem;
+  line-height: 1;
+}
+
+.toggle-table:hover {
+  border-color: #f0c75e;
+  box-shadow: 0 0 6px rgba(240,199,94,0.4);
+}
+
+.toggle-table.open::before {
+  content: "−";
+}
+
+.submenu {
+  display: none;
+}
+
+.menu-item.open > .submenu {
+  display: block;
+}
+.category-body {
+  display: none;
+}
+
+
+/* ================= CAROUSEL COA-FR ================= */
+
+
+
+/* Container principal */
+.container {
+  height: calc(100vh - 160px); /* header + marge */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Carousel */
+.carousel {
+  position: relative;
+  width: 100%;
+  max-width: 2000px;
+  height: 100%;
+}
+
+/* Slides wrapper */
+.carousel-inner {
+  display: flex;
+  height: 100%;
+  transition: transform 0.5s ease-in-out;
+}
+
+/* Slide */
+.slide {
+  flex: 0 0 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Image NON COUPÉE */
+.slide img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain; /* ✅ JAMAIS coupée */
+}
+
+/* Boutons */
+.carousel-controls {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  pointer-events: none;
+}
+
+.carousel-controls button {
+  pointer-events: auto;
+  background: rgba(31,31,31,0.85);
+  color: #f0c75e;
+  border: 1px solid #c89b3c;
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+/* Le carousel DOIT masquer ce qui dépasse */
+.carousel {
+  overflow: hidden; /* ✅ CRUCIAL */
+}
+
+/* Le wrapper des slides */
+.carousel-inner {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  overflow: hidden; /* double sécurité */
+}
+
+/* Une seule slide visible */
+.slide {
+  flex: 0 0 100%;
+  min-width: 100%;
+  height: 100%;
+}
+
+/* Image bien contenue */
+.slide img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  display: block;
+}
+/* ================= DOTS CAROUSEL ================= */
+
+.carousel-dots {
+  position: absolute;
+  bottom: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+  z-index: 10;
+}
+
+.carousel-dots span {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #3a3a3a;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+/* Actif */
+.carousel-dots span.active {
+  background: #c89b3c; /* or CoA */
+  box-shadow: 0 0 6px rgba(200,155,60,0.8);
+}
+
+/* Hover */
+.carousel-dots span:hover {
+  background: #f0c75e;
+}
+.page-carousel {
+  height: 100vh;
+  overflow: hidden;
+}
