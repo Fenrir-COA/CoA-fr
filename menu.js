@@ -1,22 +1,26 @@
-const menuToggle = document.querySelector('.menu-toggle');
-const nav = document.querySelector('.main-nav');
-const submenuToggle = document.querySelector('.submenu-toggle');
-const submenu = document.querySelector('.submenu');
+// On attend que le DOM soit chargé
+document.addEventListener('DOMContentLoaded', () => {
+  // Menu principal
+  const menuToggle = document.querySelector('.menu-toggle');
+  const nav = document.querySelector('.main-nav');
 
-/* MENU PRINCIPAL (MOBILE) */
-menuToggle.addEventListener('click', () => {
-  nav.classList.toggle('open');
+  if (menuToggle && nav) {
+    menuToggle.addEventListener('click', () => {
+      nav.classList.toggle('open');
 
-  // si on ferme le menu principal, on ferme aussi Guides
-  if (!nav.classList.contains('open')) {
-    submenu.classList.remove('open');
+      // ferme tous les sous-menus si on ferme le menu principal
+      nav.querySelectorAll('.submenu').forEach(sub => sub.classList.remove('open'));
+    });
   }
-});
 
-/* GUIDES (MOBILE + PC) */
-submenuToggle.addEventListener('click', (e) => {
-  e.preventDefault();
-  submenu.classList.toggle('open');
+  // Sous-menus
+  document.querySelectorAll('.submenu-toggle').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const submenu = btn.parentElement.querySelector('.submenu');
+      if (submenu) submenu.classList.toggle('open');
+    });
+  });
 });
 
 
