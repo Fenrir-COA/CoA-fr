@@ -9,7 +9,8 @@ if (menuToggle && nav) {
 
 document.querySelectorAll('.submenu-toggle').forEach(btn => {
   btn.addEventListener('click', () => {
-    btn.parentElement.classList.toggle('open');
+   const submenu = btn.nextElementSibling;
+    submenu.classList.toggle('open');
   });
 });
 

@@ -127,10 +127,6 @@ body::after {
 }
 
 .menu-toggle {
-  display: none !important;
-}
-
-.menu-toggle {
   background: none;
   border: none;
   font-size: 1.5em;
@@ -146,7 +142,7 @@ body::after {
   }
 
   .main-nav {
-    display: none;
+    display: block;
     position: absolute;
     right: 10px;
     top: 60px;
