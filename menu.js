@@ -1,19 +1,21 @@
 const menuToggle = document.querySelector('.menu-toggle');
 const nav = document.querySelector('.main-nav');
 
+/* MENU PRINCIPAL */
 if (menuToggle && nav) {
   menuToggle.addEventListener('click', () => {
     nav.classList.toggle('open');
   });
 }
 
+/* SOUS-MENU GUIDES */
 document.querySelectorAll('.submenu-toggle').forEach(btn => {
-  btn.addEventListener('click', (e) => {
-    e.stopPropagation();
+  btn.addEventListener('click', () => {
     const submenu = btn.nextElementSibling;
     submenu.classList.toggle('open');
   });
 });
+
 
 
 
