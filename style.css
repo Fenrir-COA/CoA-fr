@@ -142,7 +142,7 @@ body::after {
   }
 
   .main-nav {
-    display: none;
+    display: none;              /* ✅ CACHÉ PAR DÉFAUT */
     position: absolute;
     right: 10px;
     top: 80px;
@@ -153,13 +153,14 @@ body::after {
   }
 
   .main-nav.open {
-    display: block;
+    display: block;             /* ✅ OUVERT AU CLIC */
   }
 
   .submenu {
     position: static;
   }
 }
+
 
 
 .header {
