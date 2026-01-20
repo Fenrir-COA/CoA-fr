@@ -8,11 +8,13 @@ if (menuToggle && nav) {
 }
 
 document.querySelectorAll('.submenu-toggle').forEach(btn => {
-  btn.addEventListener('click', () => {
-   const submenu = btn.nextElementSibling;
+  btn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const submenu = btn.nextElementSibling;
     submenu.classList.toggle('open');
   });
 });
+
 
 
 /*---------------------testcarousel-------------------*/

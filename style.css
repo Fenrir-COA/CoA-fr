@@ -142,13 +142,14 @@ body::after {
   }
 
   .main-nav {
-    display: block;
+    display: none;
     position: absolute;
     right: 10px;
-    top: 60px;
-    background: #222;
+    top: 80px;
+    background: #1b1b1b;
     padding: 10px;
-    border-radius: 6px;
+    border-radius: 8px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.5);
   }
 
   .main-nav.open {
@@ -159,6 +160,8 @@ body::after {
     position: static;
   }
 }
+
+
 .header {
   background: linear-gradient(135deg, #0f172a, #1e293b);
   display: flex;
@@ -1154,7 +1157,6 @@ header li,
   overflow: hidden;
 }
 
-.menu-item:hover .submenu {
-  display: block;
-}
+
+
 
