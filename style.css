@@ -1027,13 +1027,6 @@ header li,
   content: "−";
 }
 
-.submenu {
-  display: none;
-}
-
-.menu-item.open > .submenu {
-  display: block;
-}
 .category-body {
   display: none;
 }
