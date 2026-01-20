@@ -1,21 +1,26 @@
 const menuToggle = document.querySelector('.menu-toggle');
 const nav = document.querySelector('.main-nav');
+const submenuToggle = document.querySelector('.submenu-toggle');
+const submenu = document.querySelector('.submenu');
 
-/* MENU PRINCIPAL */
-if (menuToggle && nav) {
-  menuToggle.addEventListener('click', () => {
-    nav.classList.toggle('open');
-  });
-}
+/* MENU PRINCIPAL ☰ */
+menuToggle.addEventListener('click', () => {
+  nav.classList.toggle('open');
 
-/* SOUS-MENU GUIDES */
-document.querySelectorAll('.submenu-toggle').forEach(btn => {
-  btn.addEventListener('click', () => {
-    const submenu = btn.nextElementSibling;
-    submenu.classList.toggle('open');
-  });
+  // si on ferme le menu principal, on ferme aussi le sous-menu
+  if (!nav.classList.contains('open')) {
+    submenu.classList.remove('open');
+  }
 });
 
+/* SOUS-MENU GUIDES */
+submenuToggle.addEventListener('click', (e) => {
+  // ✅ COMPORTEMENT SPÉCIFIQUE MOBILE
+  if (window.innerWidth <= 768) {
+    e.preventDefault();
+    submenu.classList.toggle('open');
+  }
+});
 
 
 
