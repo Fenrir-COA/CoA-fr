@@ -2298,29 +2298,7 @@ Cible subit +6% dégâts / joueur subit +6% dégâts
 
 
 <!-- ================= JS ================= -->
-<script>
-
-  document.querySelectorAll('.toggle-table').forEach(btn => {
-  btn.addEventListener('click', () => {
-    const tbody = btn.closest('table').querySelector('.category-body');
-
-    const isHidden = window.getComputedStyle(tbody).display === 'none';
-
-    tbody.style.display = isHidden ? 'table-row-group' : 'none';
-    btn.classList.toggle('open', isHidden);
-  });
-});
-
-  const menuToggle = document.querySelector('.menu-toggle');
-  const mainNav = document.querySelector('.main-nav');
-  if (menuToggle && mainNav) {
-    menuToggle.addEventListener('click', () => mainNav.classList.toggle('open'));
-  }
-
-  document.querySelectorAll('.submenu-toggle').forEach(btn => {
-    btn.addEventListener('click', () => btn.parentElement.classList.toggle('open'));
-  });
-</script>
+<script src="menu.js"></script>
 
 </body>
 </html>
