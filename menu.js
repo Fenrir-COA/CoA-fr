@@ -1,5 +1,3 @@
-console.log(menu.js chargé);
-
 
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -45,57 +43,45 @@ document.addEventListener('click', (e) => {
 /*---------------------testcarousel-------------------*/
 
 
+/* ================= CARROUSEL SAFE ================= */
 (function () {
-  "use strict";
-
   const prev = document.querySelector('#prev');
   const next = document.querySelector('#next');
-  const $slides = document.querySelectorAll('.slide');
-  let $dots;
+  const slides = document.querySelectorAll('.slide');
+
+  if (!prev || !next || !slides.length) return;
+
+  let dots;
   let currentSlide = 1;
 
   function slideTo(index) {
-    currentSlide = index >= $slides.length || index < 1 ? 0 : index;
+    currentSlide = index >= slides.length || index < 1 ? 0 : index;
 
-    $slides.forEach($elt =>
-      $elt.style.transform = `translateX(-${currentSlide * 100}%)`
+    slides.forEach(slide =>
+      slide.style.transform = `translateX(-${currentSlide * 100}%)`
     );
 
-    $dots.forEach(($elt, key) =>
-      $elt.classList = `dot ${key === currentSlide ? 'active' : 'inactive'}`
+    dots.forEach((dot, key) =>
+      dot.className = `dot ${key === currentSlide ? 'active' : 'inactive'}`
     );
   }
 
-  /* Création des dots */
-  for (let i = 1; i <= $slides.length; i++) {
-    let dotClass = i == currentSlide ? 'active' : 'inactive';
-    document.querySelector('.carousel-dots').innerHTML +=
-      `<span class="dot ${dotClass}"></span>`;
+  const dotsContainer = document.querySelector('.carousel-dots');
+  if (!dotsContainer) return;
+
+  for (let i = 1; i <= slides.length; i++) {
+    dotsContainer.innerHTML +=
+      `<span class="dot ${i === currentSlide ? 'active' : 'inactive'}"></span>`;
   }
 
-  $dots = document.querySelectorAll('.dot');
+  dots = document.querySelectorAll('.dot');
 
-  $dots.forEach(($elt, key) =>
-    $elt.addEventListener('click', () => slideTo(key))
+  dots.forEach((dot, key) =>
+    dot.addEventListener('click', () => slideTo(key))
   );
 
   prev.addEventListener('click', () => slideTo(--currentSlide));
   next.addEventListener('click', () => slideTo(++currentSlide));
-
-  /* Swipe tactile conservé */
-  $slides.forEach($elt => {
-    let startX;
-
-    $elt.addEventListener('touchstart', e => {
-      startX = e.touches[0].clientX;
-    });
-
-    $elt.addEventListener('touchend', e => {
-      let endX = e.changedTouches[0].clientX;
-      if (startX > endX) slideTo(currentSlide + 1);
-      else if (startX < endX) slideTo(currentSlide - 1);
-    });
-  });
 })();
 
 
