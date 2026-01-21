@@ -17,8 +17,9 @@ document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('.submenu-toggle').forEach(btn => {
     btn.addEventListener('click', (e) => {
       e.preventDefault();
-      const submenu = btn.closest('li')?.querySelector('.submenu');
-      if (submenu) submenu.classList.toggle('open');
+     const li = btn.closest('li');
+     const submenu = li ? li.querySelector('.submenu') : null;
+     if (submenu) submenu.classList.toggle('open');
     });
   });
 
@@ -28,7 +29,8 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!btn) return;
 
     const thead = btn.closest('thead');
-    const tbody = thead?.nextElementSibling;
+    const tbody = thead ? thead.nextElementSibling : null;
+
 
     if (!tbody || !tbody.classList.contains('category-body')) return;
 
