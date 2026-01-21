@@ -1031,6 +1031,9 @@ header li,
   display: none;
 }
 
+.category-body.open {
+  display: table-row-group;
+}
 
 /* ================= CAROUSEL COA-FR ================= */
 

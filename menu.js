@@ -1,19 +1,16 @@
-// On attend que le DOM soit chargé
 document.addEventListener('DOMContentLoaded', () => {
-  // Menu principal
+
+  /* ================= MENU PRINCIPAL ================= */
   const menuToggle = document.querySelector('.menu-toggle');
   const nav = document.querySelector('.main-nav');
 
   if (menuToggle && nav) {
     menuToggle.addEventListener('click', () => {
       nav.classList.toggle('open');
-
-      // ferme tous les sous-menus si on ferme le menu principal
       nav.querySelectorAll('.submenu').forEach(sub => sub.classList.remove('open'));
     });
   }
 
-  // Sous-menus
   document.querySelectorAll('.submenu-toggle').forEach(btn => {
     btn.addEventListener('click', (e) => {
       e.preventDefault();
@@ -21,6 +18,21 @@ document.addEventListener('DOMContentLoaded', () => {
       if (submenu) submenu.classList.toggle('open');
     });
   });
+
+  /* ================= TABLES GRAVURES ================= */
+  document.querySelectorAll('.toggle-table').forEach(btn => {
+    btn.addEventListener('click', () => {
+
+      const thead = btn.closest('thead');
+      const tbody = thead.nextElementSibling;
+
+      if (!tbody || !tbody.classList.contains('category-body')) return;
+
+      tbody.classList.toggle('open');
+      btn.textContent = tbody.classList.contains('open') ? '−' : '+';
+    });
+  });
+
 });
 
 
@@ -80,3 +92,5 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 })();
+
+
