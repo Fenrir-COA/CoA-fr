@@ -8,80 +8,66 @@ document.addEventListener('DOMContentLoaded', () => {
   if (menuToggle && nav) {
     menuToggle.addEventListener('click', () => {
       nav.classList.toggle('open');
-      nav.querySelectorAll('.submenu').forEach(sub => sub.classList.remove('open'));
+      nav.querySelectorAll('.submenu').forEach(sub =>
+        sub.classList.remove('open')
+      );
     });
   }
 
   document.querySelectorAll('.submenu-toggle').forEach(btn => {
     btn.addEventListener('click', (e) => {
       e.preventDefault();
-      const submenu = btn.parentElement.querySelector('.submenu');
+      const submenu = btn.closest('li')?.querySelector('.submenu');
       if (submenu) submenu.classList.toggle('open');
     });
   });
 
- /* ================= TABLES GRAVURES (PROD SAFE) ================= */
-document.addEventListener('click', (e) => {
-  const btn = e.target.closest('.toggle-table');
-  if (!btn) return;
+  /* ================= TABLES ================= */
+  document.addEventListener('click', (e) => {
+    const btn = e.target.closest('.toggle-table');
+    if (!btn) return;
 
-  const thead = btn.closest('thead');
-  if (!thead) return;
+    const thead = btn.closest('thead');
+    const tbody = thead?.nextElementSibling;
 
-  const tbody = thead.nextElementSibling;
-  if (!tbody || !tbody.classList.contains('category-body')) return;
+    if (!tbody || !tbody.classList.contains('category-body')) return;
 
-  tbody.classList.toggle('open');
-  btn.textContent = tbody.classList.contains('open') ? '−' : '+';
-});
+    tbody.classList.toggle('open');
+    btn.textContent = tbody.classList.contains('open') ? '−' : '+';
+  });
 
-
-});
-
-
-
-/*---------------------testcarousel-------------------*/
-
-
-/* ================= CARROUSEL SAFE ================= */
-(function () {
+  /* ================= CARROUSEL ================= */
   const prev = document.querySelector('#prev');
   const next = document.querySelector('#next');
   const slides = document.querySelectorAll('.slide');
+  const dotsContainer = document.querySelector('.carousel-dots');
 
-  if (!prev || !next || !slides.length) return;
+  if (!prev || !next || !slides.length || !dotsContainer) return;
 
-  let dots;
   let currentSlide = 1;
 
   function slideTo(index) {
-    currentSlide = index >= slides.length || index < 1 ? 0 : index;
+    currentSlide = index >= slides.length || index < 0 ? 0 : index;
 
     slides.forEach(slide =>
       slide.style.transform = `translateX(-${currentSlide * 100}%)`
     );
 
-    dots.forEach((dot, key) =>
-      dot.className = `dot ${key === currentSlide ? 'active' : 'inactive'}`
-    );
+    document.querySelectorAll('.dot').forEach((dot, key) => {
+      dot.classList.toggle('active', key === currentSlide);
+      dot.classList.toggle('inactive', key !== currentSlide);
+    });
   }
 
-  const dotsContainer = document.querySelector('.carousel-dots');
-  if (!dotsContainer) return;
-
-  for (let i = 1; i <= slides.length; i++) {
-    dotsContainer.innerHTML +=
-      `<span class="dot ${i === currentSlide ? 'active' : 'inactive'}"></span>`;
-  }
-
-  dots = document.querySelectorAll('.dot');
-
-  dots.forEach((dot, key) =>
-    dot.addEventListener('click', () => slideTo(key))
-  );
+  dotsContainer.innerHTML = '';
+  slides.forEach((_, i) => {
+    const dot = document.createElement('span');
+    dot.className = `dot ${i === currentSlide ? 'active' : 'inactive'}`;
+    dot.addEventListener('click', () => slideTo(i));
+    dotsContainer.appendChild(dot);
+  });
 
   prev.addEventListener('click', () => slideTo(--currentSlide));
   next.addEventListener('click', () => slideTo(++currentSlide));
-})();
 
-
+});
