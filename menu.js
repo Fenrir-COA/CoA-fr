@@ -1,3 +1,6 @@
+console.log(menu.js chargé);
+
+
 document.addEventListener('DOMContentLoaded', () => {
 
   /* ================= MENU PRINCIPAL ================= */
