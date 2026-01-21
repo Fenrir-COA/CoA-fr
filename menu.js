@@ -19,19 +19,21 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  /* ================= TABLES GRAVURES ================= */
-  document.querySelectorAll('.toggle-table').forEach(btn => {
-    btn.addEventListener('click', () => {
+ /* ================= TABLES GRAVURES (PROD SAFE) ================= */
+document.addEventListener('click', (e) => {
+  const btn = e.target.closest('.toggle-table');
+  if (!btn) return;
 
-      const thead = btn.closest('thead');
-      const tbody = thead.nextElementSibling;
+  const thead = btn.closest('thead');
+  if (!thead) return;
 
-      if (!tbody || !tbody.classList.contains('category-body')) return;
+  const tbody = thead.nextElementSibling;
+  if (!tbody || !tbody.classList.contains('category-body')) return;
 
-      tbody.classList.toggle('open');
-      btn.textContent = tbody.classList.contains('open') ? '−' : '+';
-    });
-  });
+  tbody.classList.toggle('open');
+  btn.textContent = tbody.classList.contains('open') ? '−' : '+';
+});
+
 
 });
 
