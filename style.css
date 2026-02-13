@@ -667,6 +667,7 @@ header li,
     rgba(0, 0, 0, 0.55),
     rgba(0, 0, 0, 0.2)
   );
+ text-align: center;
 }
 
 /* Titre */
@@ -694,7 +695,13 @@ header li,
   min-height: 1.3em;
   text-shadow: 0 2px 6px rgba(0,0,0,0.9);
 }
+  
+a:visited {
+  color: rgba(185, 185, 185, 0.171);   /* couleur après clic */
+}
 
+
+ 
 
 /* ========================================================= */
 /* 10. PLAYER VIDÉO (OVERLAY YOUTUBE)                        */
