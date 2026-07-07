@@ -1,0 +1,12 @@
+<header class="site-header">
+    <img src="logo.png" alt="Logo CoA FR" class="logo">
+
+    <h1 class="title">{{title()}}</h1>
+
+    <select class="nav-select">
+        <option>Guides ▾</option>
+        @for (choice of choices(); track $index) {
+        <option><a (href)="choice?.redirect">{{choice?.valeur}}</a></option>
+        }
+    </select>
+</header>
