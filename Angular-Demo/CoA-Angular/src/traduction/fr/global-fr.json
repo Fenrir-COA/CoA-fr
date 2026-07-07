@@ -1,0 +1,39 @@
+{
+    "choices": [
+        {
+            "valeur": "Sets Armure lv 70",
+            "redirect": "./SetsArmurelv79.html"
+        },
+        {
+            "valeur": "Accessoires lvl 70",
+            "redirect": "./SetsArmurelv79.html"
+        },
+        {
+            "valeur": "Insignes lvl 70",
+            "redirect": "./SetsArmurelv79.html"
+        },
+        {
+            "valeur": "Vidéo Raids lvl 70",
+            "redirect": "./SetsArmurelv79.html"
+        },
+        {
+            "valeur": "Inscriptions",
+            "redirect": "./SetsArmurelv79.html"
+        },
+        {
+            "valeur": "NOUVEAU GUIDE !!!",
+            "redirect": "./SetsArmurelv79.html"
+        }
+    ],
+    "set70": [
+        {
+            "titre": "Set - Plume noire",
+            "sousTitre": "Black Feather",
+            "badgeText": "EPIC I",
+            "badgeColor": "#7b5cff"
+        }
+    ],
+    "raid80": [
+        {}
+    ]
+}

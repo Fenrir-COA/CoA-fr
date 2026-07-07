@@ -1,0 +1,29 @@
+{
+    "test": "",
+    "choices": [
+        {
+            "valeur": "Sets Armor lv 70",
+            "redirect": "./SetsArmurelv79"
+        },
+        {
+            "valeur": "Accesories lvl 70",
+            "redirect": "./SetsArmurelv79.html"
+        },
+        {
+            "valeur": "Insinia lvl 70",
+            "redirect": "./SetsArmurelv79.html"
+        },
+        {
+            "valeur": "Video Raids lvl 70",
+            "redirect": "./SetsArmurelv79.html"
+        },
+        {
+            "valeur": "Inscriptions",
+            "redirect": "./SetsArmurelv79.html"
+        },
+        {
+            "valeur": "New GUIDE !!!",
+            "redirect": "./SetsArmurelv79.html"
+        }
+    ]
+}

@@ -1,0 +1,23 @@
+.site-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: #000;
+}
+
+.logo {
+    height: 80px;
+    align-self: center;
+}
+
+.title {
+    color: #FFF;
+    font-size: 3rem;
+    font-family: Arial, sans-serif;
+}
+
+.nav-select {
+    height: 40px;
+    width: 120px;
+    align-self: center;
+}
